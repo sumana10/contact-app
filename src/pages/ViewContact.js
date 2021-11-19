@@ -35,14 +35,17 @@ const ViewContact = () => {
               </CardTitle>
               <CardSubtitle>
                 <h3>
-                  <FaPhone className="mr-2" />
-                  {contact?.phoneNumber}
+                 
+                 <a href={`tel:${contact?.phoneNumber}`}> 
+                 <FaPhone className="mr-2" />
+                 {contact?.phoneNumber}
+                 </a>
                 </h3>
               </CardSubtitle>
               <a
                 className="btn btn-primary btn-block"
                 target="_blank"
-                href={`mailto:{contact?.email}`}
+                href={`mailto:${contact?.email}`}
               >
                 <FaEnvelope className="icon mr-2" />
                 {contact?.email}
@@ -51,7 +54,7 @@ const ViewContact = () => {
               <a
                 className="btn btn-primary btn-block"
                 target="_blank"
-                //TODO: add google maps
+                //TODO:DONE add google maps
                 href={`https://maps.google.com/?=${contact?.address}`}
               >
                 <FaMapMarkerAlt className="icon mr-2" />

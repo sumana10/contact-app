@@ -1,4 +1,4 @@
-//TODO: add firebase configuration and export it
+//TODO:DONE add firebase configuration and export it
 export const firebaseConfig = {
   apiKey: "AIzaSyAqH7FizP3vo5Pmz126ncTG0IFgWCU4v7k",
   authDomain: "mygitapp-b6c5d.firebaseapp.com",
