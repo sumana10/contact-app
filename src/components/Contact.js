@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 import { Row, Col } from "reactstrap";
-
+import logo from "../logo.svg"
 // icons
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
@@ -20,14 +20,14 @@ import { toast } from "react-toastify";
 
 
 const Contact = ({ contact, contactKey }) => {
-  //TODO: destructuring dispatch from the context
+  //TODO DONE: destructuring dispatch from the context
   const {dispatch} = useContext(ContactContext)
   // history hooks to get history
   const history = useHistory();
 
   // to delete the contact when delete contact is clicked
   const deleteContact = () => {
-    //TODO: create this method from firebase
+    //TODO DONE: create this method from firebase
     firebase.database().ref(`/contacts/${contactKey}`)
     .remove()
     .then(() =>{
@@ -38,7 +38,7 @@ const Contact = ({ contact, contactKey }) => {
 
   // update the star/important contact ,ie, star it or unstar the single contact
   const updateImpContact = () => {
-    //TODO: update (star) contact, use contactKey
+    //TODO DONE: update (star) contact, use contactKey
     firebase.database().ref(`/contacts/${contactKey}`)
     .update(
       {
@@ -57,7 +57,8 @@ const Contact = ({ contact, contactKey }) => {
   // when the update icon/ pen ion is clicked
   const updateContact = () => {
     // dispatching one action to update contact
-    //TODO: use dispatch to update
+    //TODO DONE: use dispatch to update
+    //all information in the state which is in contact refer AddContact for better understanding
     dispatch({
       type: CONTACT_TO_UPDATE,
       payload: contact,
@@ -70,7 +71,7 @@ const Contact = ({ contact, contactKey }) => {
   // to view a single contact in the contact/view screen
   const viewSingleContact = contact => {
     // setting single contact in state
-    //TODO: use dispatch to view single contact
+    //TODO DONE: use dispatch to view single contact
     dispatch({
       type: SET_SINGLE_CONTACT,
       payload: contact
@@ -78,7 +79,8 @@ const Contact = ({ contact, contactKey }) => {
     // sending...
     history.push("/contact/view");
   };
-
+  const d = new Date()
+  const date = `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`;
   return (
     <>
       <Row style={{cursor:"pointer"}}>
@@ -118,6 +120,7 @@ const Contact = ({ contact, contactKey }) => {
           </div>
 
           <div className="text-info">{contact.address}</div>
+          <div className="text-info">{date}</div>
         </Col>
         <Col
           md="1"
@@ -132,6 +135,7 @@ const Contact = ({ contact, contactKey }) => {
             className="icon text-info ml-2"
             onClick={() => updateContact()}
           />
+          
         </Col>
       </Row>
     </>

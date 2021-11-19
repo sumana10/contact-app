@@ -21,7 +21,7 @@ import {
 import { readAndCompressImage } from "browser-image-resizer";
 
 // configs for image resizing
-//TODO: add image configurations
+//TODO DONE: add image configurations
 import {imageConfig} from "../utils/config"
 
 import { MdAddCircleOutline } from "react-icons/md";
@@ -75,7 +75,7 @@ const AddContact = () => {
 
   // To upload image to firebase and then set the the image link in the state of the app
   const imagePicker = async e => {
-    // TODO: upload image and set D-URL to state
+    // TODO DONE: upload image and set D-URL to state
     try{
       //complete file link
       const file = e.target.files[0]
@@ -86,22 +86,25 @@ const AddContact = () => {
       //resize of the image
       let resizedImage = await readAndCompressImage(file, imageConfig)
 
-      //where to store
+      //where to store 
+      //we need to grab the reference of the storage
       const storageRef = await firebase.storage().ref()
 
-      //make ready to upload
+      //make ready upload task
       var uploadTask = storageRef
       .child('images/'+file.name)
       .put(resizedImage, metadata)
+      //what image and further information
 
-      
-      //on event
+      //events on uploadTask
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         //it returns snapshot
         snapshot =>{
-
+          
+          //to show spinner
           setIsUploading(true)
+          //uploading time calcualtion
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100
 
           //different state of uploading
@@ -156,7 +159,7 @@ const AddContact = () => {
   const addContact = async () => {
     //TODO: add contact method
     try{
-
+       //reference from firebase and set with unique key
       firebase.database().ref('contacts/' +v4()).set(
         {
           name,
@@ -169,7 +172,7 @@ const AddContact = () => {
       )
 
     }catch(error){
-
+      console.log(error);
     }
 
   };
@@ -214,7 +217,7 @@ const AddContact = () => {
     });
 
     // after adding/updating contact then sending to the contacts
-    // TODO :- also sending when their is any errors
+    // TODO DONE :- also sending when their is any errors
     history.push("/");
   };
 

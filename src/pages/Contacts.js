@@ -19,7 +19,7 @@ const Contacts = () => {
   // handle fab icon button click
   // will set in state of the contact to update and send it to the contact/add route
   const AddContact = () => {
-    //TODO: use dispatch to send user to add contact screen
+    //TODO: DONE use dispatch to send user to add contact screen
     dispatch({
       type: CONTACT_TO_UPDATE,
       payload: null,
@@ -37,7 +37,7 @@ const Contacts = () => {
       </div>
     );
   }
-
+  
   return (
     <Container className="mt-4">
       {/* TODO: Loop through FIREBASE objects  */}
@@ -45,8 +45,10 @@ const Contacts = () => {
         <div className="Center text-large text-primary">No Contacts Found In Firebase</div>
       ):(
         <ListGroup>
+        
           {Object.entries(contacts).map(([key, value])=>(
           <ListGroupItem key={key}>
+          
             <Contact contact={value} contactKey={key}/>
           </ListGroupItem>
       ))}

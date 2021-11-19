@@ -1,4 +1,4 @@
-//TODO: set NavbarBrand to go to home page and export Header
+//TODO: Done set NavbarBrand to go to home page and export Header
 
 import React from "react";
 import { Navbar, NavbarBrand, NavbarText } from "reactstrap";
